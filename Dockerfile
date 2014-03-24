@@ -11,6 +11,8 @@ RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" >> /etc/ap
 
 RUN apt-get update && apt-get -y --force-yes install apt-utils cassandra
 
+RUN sed -e 's/Xss180k/Xss256k/g' /etc/cassandra/cassandra-env.sh > /etc/cassandra/cassandra-env.sh
+
 EXPOSE 9160 9042
 
 CMD ["/usr/sbin/cassandra", "-f"]
